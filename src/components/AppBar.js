@@ -43,7 +43,7 @@ const Header = ({ siteTitle }) => {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" className={classes.title}>
-          News
+          Products
         </Typography>
         <IconButton aria-label="show 11 new notifications" color="inherit">
           <Badge badgeContent={cartCount} color="secondary">

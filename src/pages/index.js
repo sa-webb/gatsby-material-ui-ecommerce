@@ -1,53 +1,27 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
-import MenuIcon from '@material-ui/icons/Menu'
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
-import Badge from '@material-ui/core/Badge'
 
-import { cartCount } from '../global/context'
+import Skus from '../components/Products/Skus'
+import CartOverview from '../components/CartOverview'
+import Header from '../components/AppBar'
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-}))
+import { loadStripe } from '@stripe/stripe-js'
+import { CartProvider } from 'use-shopping-cart'
 
-export default function ButtonAppBar() {
-  const classes = useStyles()
+const stripePromise = loadStripe(process.env.GATSBY_STRIPE_PUBLISHABLE_KEY)
 
-  return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            News
-          </Typography>
-          <IconButton aria-label="show 11 new notifications" color="inherit">
-            <Badge badgeContent={cartCount} color="secondary">
-              <ShoppingCartIcon />
-            </Badge>
-          </IconButton>{' '}
-        </Toolbar>
-      </AppBar>
-    </div>
-  )
-}
+const Index = () => (
+    <CartProvider
+      stripe={stripePromise}
+      successUrl={`${window.location.origin}/page-2/`}
+      cancelUrl={`${window.location.origin}/`}
+      currency="USD"
+      allowedCountries={['US', 'GB', 'CA']}
+      billingAddressCollection={true}
+    >
+      <Header />
+      <CartOverview />
+      <Skus />
+    </CartProvider>
+)
+
+export default Index
