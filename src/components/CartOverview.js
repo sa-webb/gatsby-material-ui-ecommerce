@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 
+
 import { useShoppingCart } from 'use-shopping-cart'
 
 const buttonStyles = {
@@ -9,7 +10,7 @@ const buttonStyles = {
   outline: 'none',
   padding: '12px',
   boxShadow: '2px 5px 10px rgba(0,0,0,.1)',
-  backgroundColor: 'rgb(255, 178, 56)',
+  backgroundColor: 'rgb(66, 158, 245)',
   borderRadius: '6px',
   letterSpacing: '1.5px',
 }
