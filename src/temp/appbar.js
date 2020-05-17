@@ -58,7 +58,7 @@ const Appbar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
 
-  const { redirectToCheckout, cartCount } = useShoppingCart()
+  const { cartCount } = useShoppingCart()
 
   const isMenuOpen = Boolean(anchorEl)
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
